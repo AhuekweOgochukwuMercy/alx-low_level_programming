@@ -1,19 +1,21 @@
 #include"main.h"
 
 /**
-* 0-putchar - prints "_putchar"
+* main - main function .
 *
 * Return: 0
 */
-int 0-putchar(void)
+int main(void)
 {
-	_putchar('_');
-	_putchar('p');
-	_putchar('u');
-	_putchar('t');
-	_putchar('c');
-	_putchar('h');
-	_putchar('a');
-	_putchar('r');
+	char h[] = "Holberton";
+	int s = sizeof(h);
+	int i;
+	
+	for (i = 0; i < s; i++)
+	{
+		_putchar(h[i]);
+	}
+
 	_putchar('\n');
+	return (0);
 }
