@@ -1,19 +1,21 @@
 #include "main.h"
 
 /**
- * print_line -> printing line
- * @n: integer params
+ * print_line - checks for a digit (0 through 9).
+ * @n: n - variable
+ * Return: Always 0.
  */
 void print_line(int n)
 {
 	int x;
 
-	if (n <= 0)
-	putchar('\n');
-	else
+	if (n > 0)
 	{
-		for (x = 0; x < n; x++)
-		 _putchar(95);
-		_putchar('\n');
+
+		for (x = 1; x <= n; x++)
+		{
+		 	_putchar(95);
+		}
 	}
+	_putchar('\n');
 }
