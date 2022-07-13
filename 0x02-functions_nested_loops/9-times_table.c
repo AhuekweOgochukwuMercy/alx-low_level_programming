@@ -1,4 +1,4 @@
-#include "main"
+#include "main.h"
 
 /**
  * times_table -print a table 10x10
@@ -11,7 +11,6 @@ void times_table(void)
 
 	for (row = 0; row <= 9; row++)
 	{
-
 	_putchar('0');
 
 	for (column = 1; column <= 9; column++)
