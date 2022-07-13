@@ -1,13 +1,22 @@
-#include"main.h"
+#include"main.h"                                                 
 
 /**
-* _putchar - writes the character c to stdout
-* @c: The character to print
-*
-* Return: on success 1.
-* On error, -1 is returned, and errno is set appriopriately.
-*/
-int _putchar(char c)
+ * main - main function
+ *
+ * Return: 0
+ */                                                              
+int main(void)
 {
-	return (write(1, &c, 1));
+	char h[] = "Holberton";
+	int s = sizeof(h);
+	int i;
+	
+	for (i = 0; i < s; i++)
+	{
+		_putchar(h[i]);
+	}       
+	
+	_putchar('\n');
+
+	return (0);                                              
 }
