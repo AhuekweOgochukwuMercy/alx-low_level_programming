@@ -1,21 +1,19 @@
 #include"main.h"
 
 /**
-* main - main function .
+* main - Entry point
 *
-* Return: 0
+* Return: Always 0 (success)
 */
 int main(void)
 {
-	char h[] = "Holberton";
-	int s = sizeof(h);
-	int i;
+	char *sh = "Main";
 
-	for (i = 0; i < s; i++)
+	while (*sh)
 	{
-		_putchar(h[i]);
+		_putchar(*sh);
+		sh++;
 	}
-
 	_putchar('\n');
 
 	return (0);
