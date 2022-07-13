@@ -1,16 +1,20 @@
 #include "main.h"
 
 /**
- * print_most_number -> this prints most numbers
+ * print_most_number - prints the numbers interleaved
+ *
+ * Return: numbers
  */
 void print_most_numbers(void)
 {
-	int x;
+	int numb;
 
-	for (x = 0; x < 10; x++)
+	for (numb = 48; numb <= 57; numb++)
 	{
-		if (x != 2 && x != 4)
-		_putchar(x + '0');
+		if (numb != 50 && numb != 52)
+		{
+			_putchar(numb);
+		}
 	}
 	_putchar('\n');
 }
