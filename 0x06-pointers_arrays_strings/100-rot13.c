@@ -1,31 +1,26 @@
 #include "holberton.h"
 /**
- * rot13 - encodes a string using rot13
- * @str: the string to encode
+ * rot13 - Function that reverses the content of an array of integers.
+ * 
+ * @str: s is the array
  *
- * Return: encode string
+ * Return: Always 0.
  */
 char *rot13(char *str)
 {
-	int i, j;
-
-	char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char rot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	int i = 0, k;
+	char s[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char s1[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 	
-	i = 0;
-	while (str[i] != '\0')
+	for (; str[i] != '\0'; i++)
 	{
-		j = 0;
-		while (alpha[j] != '\0')
+		for (k = 0; k <= 51; k++)
 		{
-			if (str[i] == alpha[j])
+			if (s[k] == str[i])
 			{
-				str[i] = rot[j];
-				break;
+				str[i] = s1[k];
 			}
-			j++;
 		}
-		i++;
 	}
 	return (str);
 }
