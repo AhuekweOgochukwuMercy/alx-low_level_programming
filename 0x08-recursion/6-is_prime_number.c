@@ -1,39 +1,46 @@
 #include "main.h"
 
 /**
- * is_prime_number - function that returns 1 if
- * the input integer is a prime number, otherwise return 0
- *
- * @n: parameter defined in main, integer
- *
- * Return: 1 or 0
+ * fun_pr - function that finds if it's prime number.
+ * @a: The value to analize.
+ * @b: The value that changes to analyze.
+ * Return: 1 if a is prime, otherwise 0.
  */
 
-int is_prime number(int n)
+int fun_pr(int a, int b)
 {
-	if (n < 0)
+	if (a % b == 0 && a != 2)
+	{
 		return (0);
-	if (n == 1)
-		return (0);
-	return (tmp2(n, 2, n / 2));
+	}
+
+	if (b > a / 2)
+	{
+		return (1);
+	}
+
+	return (fun_pr(a, b + 1));
 }
 
 /**
- * tmp2 - subfunction for is_prime_number
- *
- * @n: integer, checked for prime
- * @i: prime number multiple to n (to be incremented)
- * @stop: stop dividing
- *
- * Return: 0 or 1
+ * is_prime_number - function that returns 1 is a prime number, otherwise 0.
+ * @n: The value to analize.
+ * Return: 0 if n is negative, and 0 if n is 1.
  */
 
-int tmp2(int n, int i, int stop)
+int is_prime_number(int n)
 {
-	if (n % i == 0 && i <= stop)
+	int pri = 2;
+
+	if (n < 0)
+	{
 		return (0);
-	else if (n % i != 0 && i <= stop)
-		return (tmp2(n, i + 1, stop));
-	else
-		return (1);
+	}
+
+	if (n == 1)
+	{
+		return (0);
+	}
+
+		return (fun_pr(n, pri));
 }
