@@ -1,57 +1,57 @@
 #include "main.h"
 
 /**
- * _strlen_recursion -  returns the length of a string.
- * @s: The string to count.
- * Return: The count of the string.
+ * _strlen_recursion - Find the length of a string.
+ * @s: The string to find length of
+ * Return: The length
  */
 
 int _strlen_recursion(char *s)
 {
-	if (*s == '\0')
-		return (0);
+	int l;
 
-	else
-		return ((1 + _strlen_recursion(s + 1)));
+	l= 0;
+	if (*s != 0)
+	{
+		l++;
+		return ((l + _strlen_recursion(s + 1)));
+	}
+	return (l);
 }
 
 /**
- * funrecur - function that searches if a string is palindrome.
- * @s: The string to search.
- * @a: Number to compare.
- * @ln: Number to compare.
+ * pal_check - Actual check for palindrome
+ * @s: The string to check
+ * @l: Length of string
+ *
  * Return: 1 if it is palindrome, 0 if not.
  */
 
-int funrecur(char *s, int a, int ln)
+int pal_check(char *s, int l)
 {
-	if (a == ln)
+	if (l <= 1)
 		return (1);
 
-	if (s[a] != s[ln])
+	if (*s != s[l- 1])
 		return (0);
-
-	if (a < ln + 1)
-		return (funrecur(s, a + 1, ln - 1));
-
 	else
-		return (1);
+		return (pal_check((s + 1), (l - 2)));
 }
 
 /**
- * is_palindrome - Palindrome function.
- * @s: The string to evaluate.
- * Return: 1 if it is a palindrome, 0 if not.
+ * is_palindrome - check if a string is a Palindrome
+ * @s: The string to check
+ *
+ * Return: 1 if palindrome, 0 otherwise
  */
 
 int is_palindrome(char *s)
 {
-	int len;
+	int l;
 
-	len = _strlen_recursion(s);
-
-	if (len == 0);
+	l = _strlen_recursion(s);
+	if (l <= 1)
 		return (1);
 
-	return (funrecur(s, 0, len - 1));
+	return (pal_check(s, l));
 }
