@@ -23,7 +23,8 @@ int fun_a(int num, int r)
 }
 
 /**
- * _sqrt_recursion - function that returns the natural square root of a nunmber.
+ * _sqrt_recursion - function that returns the natural
+ * square root of a nunmber.
  * @n: The number to analize.
  * Return: The value of each root or -1 if it has no root
  */
