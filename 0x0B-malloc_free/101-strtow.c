@@ -3,51 +3,106 @@
 #include <stdlib.h>
 
 /**
- * strtow - function that splits a string into words
- * @str: pointer to the string for processing
- * Return: pointer to an array of strings
- * address of the newly allocated memory
+ * word_count - Count number of words separated by spaces in a string
+ * @str: string to check
+ *
+ * Return: Number of words
  */
-
-char **strtow(char *str)
+int word_count(char *str)
 {
-	int i, j, k = 0, l, m, count = 0, len;
-	char **words;
+	int count;
+	int i;
 
-	if (str == NULL || str == '\0')
-		return (NULL);
-
-	for (i = 0; str[i] != '\0'; i++)
-		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-			count++;
-	if (count == 0)
-		return (NULL);
-	words = malloc((count + 1) * sizeof(char *));
-	if (words == NULL)
+	i = count = 0;
+	while (str[i] != '\0')
 	{
-		free(words);
-		return (NULL);
+		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
+		{
+			count++;
+			i++;
+		}
+		i++;
 	}
-	for (i = 0; str[i] != '\0' &&  k < count; i++)
+	return (count);
+}
+
+/**
+ * find_words_len - Find length of all the words in a string
+ * @str: String to check length of words in
+ * @words: Number of words
+ *
+ * Return: Combined length of words
+ */
+int *find_words_len(char *str, int words)
+{
+	int i, word, len;
+	int *sizes;
+
+	sizes = malloc(words * sizeof(int));
+	if (sizes == NULL)
+		return (NULL);
+	i = word = 0;
+	while (word < words)
 	{
 		if (str[i] != ' ')
 		{
 			len = 0;
-			for (j = i; str[j] != ' ' && str[j] != '\0'; j++)
-				len++;
-			words[k] = malloc((len + 1) * sizeof(char));
-			if (words[k] == NULL)
+			while (str[i] != ' ')
 			{
-				for (m = 0; m < k; m++)
-					free(words[k]);
-				free(words);
-				return (NULL);
+				len++;
+				i++;
 			}
-			for (l = 0; l < len; l++, i++)
-				words[k][l] = str[i];
-			words[k][l] = '\0', k++;
+			len++;
+			sizes[word] = len;
+			word++;
+		}
+		i++;
+	}
+	return (sizes);
+}
+
+/**
+ * strtow - Split a string into words
+ * @str: String to split
+ *
+ * Return: Return pointer to an array of strings, NULL if it fails
+ */
+char **strtow(char *str)
+{
+	char **nstr;
+	int words, i, j, k, cur words, *sizes;
+
+	if (str == NULL || *str == '\0')
+		return (NULL);
+	words = word_count(str);
+	sizes = malloc(words * sizeof(int));
+	if (sizes == NULL)
+		return (NULL);
+	i = j = k = 0;
+	while (i < words && str[j] != '\0')
+	{
+		cur_words = i;
+		nstr[i] = malloc(sizes[i] + sizeof(char));
+		if (nstr[i] == NULL)
+		{
+			for (i = i - 1; i >= 0; i--)
+				free(nstr[i--]);
+			free(nstr);
+			return (NULL);
+		}
+		while (str[j] != '\0' && i == cur_words)
+		{
+			if (str[j] != ' ')
+			{
+				while (str[j] != '\0' && str[j] != ' ')
+				{
+					nstr[i][k] = str[j]; j++; k++;
+				}
+				nstr[i][k] = '\0'; i++; k= 0;
+			}
+			j++;
 		}
 	}
-	words[k] = NULL;
-	return (words);
+	nstr[i] = NULL; free(sizes);
+	return (nstr);
 }
