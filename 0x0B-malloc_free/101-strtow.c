@@ -1,5 +1,3 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -77,6 +75,10 @@ char **strtow(char *str)
 	words = word_count(str);
 	sizes = malloc(words * sizeof(int));
 	if (sizes == NULL)
+		return (NULL);
+	sizes = find_words_len(str, words);
+	nstr = malloc((words +1) * sizeof(char *));
+	if (nstr == NULL)
 		return (NULL);
 	i = j = k = 0;
 	while (i < words && str[j] != '\0')
