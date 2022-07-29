@@ -134,7 +134,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	return (ptr);
 }
 
-/** 
+/**
  * _memset - function that fills memory with a constant byte
  *
  * @s: parameter defined in main, pointer to memory area
