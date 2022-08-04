@@ -75,22 +75,23 @@ void print_all(const char * const format, ...)
 		{"f", op_f},
 		{"s", op_s},
 		};
+
 	va_start(all, format);
 	i = 0;
 	while (format && format[i])
 	{
 		j = 0
-			while (j < 4)
+		while (j < 4)
+		{
+			if (ops[j].op[0] == format[i])
 			{
-				if (ops[j].op[0] == format[i])
-				{
-					printf("%s", separator);
-					seperator = ", ";
-					ops[j].f(all);
-					break;
-				}
-				j++;
+				printf("%s", separator);
+				seperator = ", ";
+				ops[j].f(all);
+				break;
 			}
+			j++;
+		}
 	i++;
 	}
 
