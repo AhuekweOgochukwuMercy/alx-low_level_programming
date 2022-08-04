@@ -3,99 +3,49 @@
 #include <stdarg.h>
 
 /**
- * op_c - Print character .
- * @form: name va_list
- *
- * Return: Nothing.
- */
-
-void op_c(va_list form)
-{
-	printf("%c", va_arg(form, int));
-}
-/**
- * op_i - Print Integer
- * @form: name va_list
- *
- * Return: Nothing.
- */
-
-void op_i(va_list form)
-{
-	printf("%i", va_arg(form, int));
-}
-/**
- * op_f - print FLoat numbers
- * @form: name of va_list
- *
- * Return: Nothing.
- */
-
-void op_f(va_list form)
-{
-	printf("%f", va_arg(form, double));
-}
-/**
- * op_s -print string
- * @form: name va_list
- *
- * Return: Nothing.
- */
-
-void op_s(va_list form)
-{
-	char *str;
-
-	str = va_arg(form, char *);
-	if (str == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
-	printf("%s", str);
-}
-
-/**
- * print_all - check the code for Holberton School students.
- * @format: number of arguments in character format
- *
- * Return: Nothing.
+ * print_all - prints all the given strings.
+ * @format: the kind of format c for char s for string i for int f for
+ * float
+ * Return: a string with tha arguments.
  */
 
 void print_all(const char * const format, ...)
 {
+	unsigned int i = 0;
+	char *str;
+	va_list arguments;
 
-	va_list all;
-	unsigned int i, j;
-	char *separator = "";
-
-	f ops[] = {
-		{"c", op_c},
-		{"i", op_i},
-		{"f", op_f},
-		{"s", op_s},
-		};
-
-	va_start(all, format);
-	i = 0;
-	while (format && format[i])
+	va_start(arguments, format);
+	while (format && format[i] != '\0')
 	{
-		j = 0
-		while (j < 4)
+		switch (format[i])
 		{
-			if (ops[j].op[0] == format[i])
+		case 'c':
+			printf("%c", va_arg(arguments, int));
+			break;
+		case 'i':
+			printf("%i", va_arg(arguments, int));
+			break;
+		case 'f':
+			printf("%f", va_arg(arguments, double));
+			break;
+		case 's':
+			str = va_arg(arguments, char *);
+			if ('str)
 			{
-				printf("%s", separator);
-				seperator = ", ";
-				ops[j].f(all);
+				printf("%s", str);
 				break;
 			}
-			j++;
+			printf("(nil)");
+			break;
+		default:
+			i++;
+			continue;
 		}
-	i++;
+		if (format[i + 1] != '\0')
+			printf(", ");
+		i++;
 	}
-
+	va_end(arguments);
 	printf("\n");
-	va_end(all);
 }
-
