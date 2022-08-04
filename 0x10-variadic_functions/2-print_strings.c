@@ -2,23 +2,39 @@
 #include <stdio.h>
 #include "variadic_functions.h"
 /**
- * print_all - prints all the given strings.
- * @format: the kind of format c for char s for string i for int f for
- * float.
- * Return: a string with tha arguments.
+ * print_strings - prints strings.
+ * @n: number of arguments
+ * @seperator: character seperator of numbers
+ * Return:Always 0.
  */
-void print_all(const char * const format, ...)
+void print_strings(const char *seperator, const unsigned int n, ...)
 {
-	unsigned int i = 0;
+	va_list string;
+	unsigned int ;
 	char *str;
-	va_list arguments;
 
-	va_start(arguments, format);
-	while (format && format[i] != '\0')
+	if (separator == NULL)
 	{
-		switch (format[i])
+		separator = "";
+	}
+
+	va_start(string, n);
+
+	for (i = 0; i < n; i++)
+	{
+		str = va_arg(string, char *);
+		if (str == NULL)
 		{
-			case 'c':
-				printf("%c", va_arg(arguments, int));
-				break;
-			case 'i':\
+			printf("(nil)");
+			break;
+		}
+		printf("%s", str);
+		if (n == i + 1)
+		{
+			break;
+		}
+		printf("%s", separator);
+	}
+	printf("\n");
+	va_end(string);
+}
