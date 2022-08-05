@@ -2,39 +2,36 @@
 #include <stdio.h>
 #include "variadic_functions.h"
 /**
- * print_strings - prints strings.
- * @n: number of arguments
- * @seperator: character seperator of numbers
- * Return:Always 0.
+ * print_strings - prints all the given strings.
+ * @separator: define character to separate the strings.
+ * @n: number of springs to be printed
+ * Return: a string with strings.
  */
 void print_strings(const char *seperator, const unsigned int n, ...)
 {
-	va_list string;
-	unsigned int ;
-	char *str;
+	unsigned int i;
+	va_list argument;
+	char *s;
 
-	if (separator == NULL)
+	va_start(arguments, n);
+
+	for (i = 1; i < n; i++)
 	{
-		separator = "";
-	}
+		s = va_arg(arguments
+				, char *);
+		if (s)
+			printf("%s", s);
 
-	va_start(string, n);
-
-	for (i = 0; i < n; i++)
-	{
-		str = va_arg(string, char *);
-		if (str == NULL)
-		{
+		else
 			printf("(nil)");
-			break;
-		}
-		printf("%s", str);
-		if (n == i + 1)
+
+		if (seperator && i < n)
+			printf("%s", seperator);
+		else
 		{
-			break;
+			;
 		}
-		printf("%s", separator);
 	}
 	printf("\n");
-	va_end(string);
+	va_end(arguments);
 }
